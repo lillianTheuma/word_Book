@@ -67,7 +67,7 @@ end
 
 post ('/words/:id/meanings') do
   @word = Word.find(params[:id].to_i())
-  meaning = Meaning.new({:name => params[:meaning], :word_id => @word.id, :id => nil})
+  meaning = Meaning.new({:name => params[:meaning], :word_id => @word.id, :id => nil, :poster_name => params[:poster_name]})
   meaning.save()
   erb(:word)
 end
