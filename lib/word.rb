@@ -1,10 +1,8 @@
-class Album
+class Word
   attr_accessor :name
   attr_reader :id
 
-  @@albums = {}
-  @@albums_sold = {}
-
+  @@words = {}
   @@total_rows = 0
 
   def initialize(attributes)
@@ -14,36 +12,36 @@ class Album
   end
 
   def self.all
-    @@albums.values()
+    @@words.values()
   end
   def self.all_sold
-    @@albums_sold.values()
+    @@words_sold.values()
   end
 
   def save
-    @@albums[self.id] = Album.new({ :name => self.name, :id => self.id })
+    @@words[self.id] = Word.new({ :name => self.name, :id => self.id })
   end
 
-  def ==(album_to_compare)
-    self.name() == album_to_compare.name()
+  def ==(word_to_compare)
+    self.name() == word_to_compare.name()
   end
 
   def self.clear
-    @@albums = {}
+    @@words = {}
     @@total_rows = 0
   end
 
   def self.find(id)
-    @@albums[id]
+    @@words[id]
   end
 
   def self.search(search)
-    @@albums.values().select { |a| a.name.match(/#{search}/i)}
+    @@words.values().select { |a| a.name.match(/#{search}/i)}
   end
 
   def update(name)
     self.name = name
-    @@albums[self.id] = Album.new({ :name => self.name, :id => self.id })
+    @@words[self.id] = Word.new({ :name => self.name, :id => self.id })
   end
 
   def self.sort()
@@ -56,16 +54,12 @@ class Album
   end
 
   def delete
-    @@albums.delete(self.id)
+    @@words.delete(self.id)
   end
 
-  def sold
-    @@albums_sold[self.id] = @@albums[self.id]
-    @@albums.delete(self.id)
-  end
 
-  def songs
-    Song.find_by_album(self.id)
+  def meanings
+    Meaning.find_by_word(self.id)
   end
 
 

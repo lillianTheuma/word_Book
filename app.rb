@@ -1,88 +1,88 @@
 require('sinatra')
 require('sinatra/reloader')
-require('./lib/album')
-require('./lib/song')
+require('./lib/word')
+require('./lib/meaning')
 require('pry')
 also_reload('lib/**/*.rb')
 
 get('/') do
-  redirect to('/albums')
+  redirect to('/words')
 end
 
-get('/albums') do
-  @albums = Album.sort
-  @albums_sold = Album.all_sold
-  erb(:albums)
+get('/words') do
+  @words = Word.sort
+  @words_sold = Word.all_sold
+  erb(:words)
 end
 
-get('/albums/search') do
+get('/words/search') do
   user_search = params[:search]
-  @search = Album.search(user_search)
+  @search = Word.search(user_search)
   erb(:search)
 end
 
 
-get ('/albums/new') do
-  erb(:new_album)
+get ('/words/new') do
+  erb(:new_word)
 end
 
-post ('/albums') do
-  name = params[:album_name]
-  album = Album.new({:name => name, :id => nil})
-  album.save()
-  redirect to('/albums')
+post ('/words') do
+  name = params[:word_name]
+  word = Word.new({:name => name, :id => nil})
+  word.save()
+  redirect to('/words')
 end
 
-get ('/albums/:id') do
-  @album = Album.find(params[:id].to_i())
-  erb(:album)
+get ('/words/:id') do
+  @word = Word.find(params[:id].to_i())
+  erb(:word)
 end
 
-get ('/albums/:id/edit') do
-  @album = Album.find(params[:id].to_i())
-  erb(:edit_album)
+get ('/words/:id/edit') do
+  @word = Word.find(params[:id].to_i())
+  erb(:edit_word)
 end
 
-patch ('/albums/:id') do
-  @album = Album.find(params[:id].to_i())
-  @album.update(params[:name])
-  redirect to('/albums')
+patch ('/words/:id') do
+  @word = Word.find(params[:id].to_i())
+  @word.update(params[:name])
+  redirect to('/words')
 end
 
-get ('/albums/:id/buy') do
+get ('/words/:id/buy') do
 
-    @album = Album.find(params[:id].to_i())
-    @album.sold
-    redirect to('/albums')
+    @word = Word.find(params[:id].to_i())
+    @word.sold
+    redirect to('/words')
 end
-delete ('/albums/:id') do
-  @album = Album.find(params[:id].to_i())
-  @album.delete()
-  redirect to('/albums')
-end
-
-get ('/albums/:id/songs/:song_id') do
-  @song = Song.find(params[:song_id].to_i())
-  erb(:song)
+delete ('/words/:id') do
+  @word = Word.find(params[:id].to_i())
+  @word.delete()
+  redirect to('/words')
 end
 
-post ('/albums/:id/songs') do
-  @album = Album.find(params[:id].to_i())
-  song = Song.new({:name => params[:song_name], :album_id => @album.id, :id => nil, :artist_name => params[:artist_name], :year_recorded => params[:year_recorded], :studio => params[:studio]})
-  song.save()
-  erb(:album)
+get ('/words/:id/meanings/:meaning_id') do
+  @meaning = Meaning.find(params[:meaning_id].to_i())
+  erb(:meaning)
 end
 
-patch ('/albums/:id/songs/:song_id') do
-  @album = Album.find(params[:id].to_i())
-  song = Song.find(params[:song_id].to_i())
-  song.update(params[:name], @album.id, params[:artist_name], params[:year_recorded])
-  erb(:album)
+post ('/words/:id/meanings') do
+  @word = Word.find(params[:id].to_i())
+  meaning = Meaning.new({:name => params[:meaning_name], :word_id => @word.id, :id => nil, :artist_name => params[:artist_name], :year_recorded => params[:year_recorded], :studio => params[:studio]})
+  meaning.save()
+  erb(:word)
 end
 
-delete ('/albums/:id/songs/:song_id') do
-  song = Song.find(params[:song_id].to_i())
-  song.delete
-  @album = Album.find(params[:id].to_i())
-  erb(:album)
+patch ('/words/:id/meanings/:meaning_id') do
+  @word = Word.find(params[:id].to_i())
+  meaning = Meaning.find(params[:meaning_id].to_i())
+  meaning.update(params[:name], @word.id, params[:artist_name], params[:year_recorded])
+  erb(:word)
+end
+
+delete ('/words/:id/meanings/:meaning_id') do
+  meaning = Meaning.find(params[:meaning_id].to_i())
+  meaning.delete
+  @word = Word.find(params[:id].to_i())
+  erb(:word)
 end
