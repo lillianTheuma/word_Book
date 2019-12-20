@@ -1,0 +1,37 @@
+<h2>Word: <%= @word.word %></h2>
+
+<h3>Word meanigs</h3>
+
+  <% if @word.definitions %>
+    <ul>
+      <% @word.definitions.each do |definition| %>
+        <li><a href="/words/<%= @word.id %>/definitions/<%= definition.id %>"><%= definition.word %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no definitions listed for this word yet.</p>
+  <% end %>
+
+<h4>Add a definition:</h4>
+<form class="" action="/words/:id/new" method="get">
+  <button type="submit">Add a new word</button>
+</form>
+
+<form action="/words/<%= @word.id() %>/edit" method="get">
+  <input name="_method" type="hidden" value="edit">
+  <button type="submit">Edit Word</button>
+</form>
+
+
+
+<h4>Add a word:</h4>
+
+<form action="/words/<%= @word.id %>/definitions" method="post">
+  <div class="form-group">
+    <label for="song_name">Definition</label>
+    <input id="song_name" name="song_name" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn">Add song</button>
+</form>
+
+<p><a href="/words">Return to word list</a></p>
