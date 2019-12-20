@@ -3,7 +3,6 @@ class Word
   attr_reader :id
 
   @@words = {}
-  @@words_sold = {}
 
   @@total_rows = 0
 
@@ -15,9 +14,6 @@ class Word
 
   def self.all
     @@words.values()
-  end
-  def self.all_sold
-    @@words_sold.values()
   end
 
   def save
@@ -62,8 +58,4 @@ class Word
   def definitions
     Definition.find_by_word(self.id)
   end
-
-
-
-
 end

@@ -6,7 +6,7 @@
 <% if @words.any? %>
   <ul>
     <% @words.each do |word| %>
-      <li><a href="/words/<%= words.id %>"><%= word.name %></a></li>
+      <li><a href="/words/<%= word.id %>"><%= word.word %></a></li>
     <% end %>
   </ul>
 <% else %>
@@ -16,10 +16,10 @@
   <button type="submit">Add a new word</button>
 </form>
 
-<form action="/words/search" method="get">
+<!-- <form action="/words/search" method="get">
   <div class="form-group">
     <label for="search">Search</label>
     <input id="search" name="search" class="form-control" type="text">
   </div>
   <button type="submit" class="btn">Search</button>
-</form>
+</form> -->
