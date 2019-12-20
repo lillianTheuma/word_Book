@@ -1,6 +1,6 @@
 class Meaning
   attr_reader :id
-  attr_accessor :name, :word_id
+  attr_accessor :name, :word_id, :poster_name
 
   @@meanings = {}
   @@total_rows = 0
@@ -9,6 +9,7 @@ class Meaning
     @name = attributes.fetch(:name)
     @word_id = attributes.fetch(:word_id)
     @id = attributes.fetch(:id) || @@total_rows += 1
+    @poster_name = attributes.fetch(:poster_name)
   end
 
   def ==(meaning_to_compare)
@@ -20,7 +21,7 @@ class Meaning
   end
 
   def save
-    @@meanings[self.id] = Meaning.new({:name => @name, :word_id => @word_id, :id => @id})
+    @@meanings[self.id] = Meaning.new({:name => @name, :word_id => @word_id, :id => @id, :poster_name => @poster_name})
   end
 
   def self.find(id)
@@ -30,7 +31,7 @@ class Meaning
   def update(name, word_id)
     self.name = name
     self.word_id = word_id
-    @@meanings[self.id] = Meaning.new({:name => @name, :word_id => @word_id, :id => @id})
+    @@meanings[self.id] = Meaning.new({:name => @name, :word_id => @word_id, :id => @id, :poster_name => @poster_name})
   end
 
   def delete

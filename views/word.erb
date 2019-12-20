@@ -1,13 +1,17 @@
 <h2>Word Name: <%= @word.name %></h2>
 
 <h3>Word Meanings</h3>
-
   <% if @word.meanings %>
-    <ul>
+    <ol>
       <% @word.meanings.each do |meaning| %>
-        <li><a href="/words/<%= @word.id %>/meanings/<%= meaning.id %>"><%= meaning.name %></a></li>
+        <li>
+          <ul>
+            <li><a href="/words/<%= @word.id %>/meanings/<%= meaning.id %>"><%= meaning.name %></a></li>
+            <li>From <%= meaning.poster_name %></li>
+          </ul>
+        </li>
       <% end %>
-    </ul>
+    </ol>
   <% else %>
     <p>There are no meanings listed for this word yet.</p>
   <% end %>
@@ -16,7 +20,9 @@
 
 <form action="/words/<%= @word.id %>/meanings" method="post">
   <div class="form-group">
-    <label for="meaning">Meaning</label>
+    <label for="poster_name">What is your name?</label>
+    <input id="poster_name" name="poster_name" class="form-control" type="text">
+    <label for="meaning">What does the word mean?</label>
     <input id="meaning" name="meaning" class="form-control" type="text">
   </div>
   <button type="submit" class="btn">Add meaning</button>
