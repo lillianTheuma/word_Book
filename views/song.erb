@@ -1,0 +1,30 @@
+<h2>Song: <%= @song.name %></h2>
+<ul>
+  <li>Album: <%= @song.album.name %></li>
+  <li>Artist: <%= @song.artist_name %></li>
+  <li>Year: <%= @song.year_recorded %></li>
+  <li>Studio: <%= @song.studio %> </li>
+</ul>
+
+<form action="/albums/<%= @song.album.id %>/songs/<%= @song.id %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+
+  <label for="name">Rename song</label>
+  <input id="name" name="name" type="text" value="<%= @song.name %>">
+
+  <label for="artist_name">Rename Artist</label>
+  <input id="artist_name" name="artist_name" type="text" value="<%= @song.artist_name %>">
+
+  <label for="year_recorded">Update Year</label>
+  <input id="year_recorded" name="year_recorded" type="text" value="<%= @song.year_recorded %>">
+
+  <button type="submit">Update song</button>
+</form>
+
+<form action="/albums/<%= @song.album.id %>/songs/<%= @song.id %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit">Delete song</button>
+</form>
+
+<a href="/albums/<%= @song.album.id %>">Back to <%= @song.album.name %></a>
