@@ -27,12 +27,9 @@ class Meaning
     @@meanings[id]
   end
 
-  def update(name, word_id, artist_name, year_recorded, studio)
+  def update(name, word_id)
     self.name = name
     self.word_id = word_id
-    self.artist_name = artist_name
-    self.year_recorded = year_recorded
-    self.studio = studio
     @@meanings[self.id] = Meaning.new({:name => @name, :word_id => @word_id, :id => @id})
   end
 

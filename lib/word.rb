@@ -14,9 +14,6 @@ class Word
   def self.all
     @@words.values()
   end
-  def self.all_sold
-    @@words_sold.values()
-  end
 
   def save
     @@words[self.id] = Word.new({ :name => self.name, :id => self.id })

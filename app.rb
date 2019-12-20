@@ -11,7 +11,6 @@ end
 
 get('/words') do
   @words = Word.sort
-  @words_sold = Word.all_sold
   erb(:words)
 end
 
@@ -68,7 +67,7 @@ end
 
 post ('/words/:id/meanings') do
   @word = Word.find(params[:id].to_i())
-  meaning = Meaning.new({:name => params[:meaning_name], :word_id => @word.id, :id => nil, :artist_name => params[:artist_name], :year_recorded => params[:year_recorded], :studio => params[:studio]})
+  meaning = Meaning.new({:name => params[:meaning], :word_id => @word.id, :id => nil})
   meaning.save()
   erb(:word)
 end
@@ -76,7 +75,7 @@ end
 patch ('/words/:id/meanings/:meaning_id') do
   @word = Word.find(params[:id].to_i())
   meaning = Meaning.find(params[:meaning_id].to_i())
-  meaning.update(params[:name], @word.id, params[:artist_name], params[:year_recorded])
+  meaning.update(params[:name], @word.id)
   erb(:word)
 end
 

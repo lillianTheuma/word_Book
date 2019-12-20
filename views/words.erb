@@ -2,32 +2,21 @@
 
 <h2>Available Records</h2>
 
-<h3>Current Albums:</h3>
-<% if @albums.any? %>
+<h3>Current Words:</h3>
+<% if @words.any? %>
   <ul>
-    <% @albums.each do |album| %>
-      <li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
+    <% @words.each do |word| %>
+      <li><a href="/words/<%= word.id %>"><%= word.name %></a></li>
     <% end %>
   </ul>
 <% else %>
   <p>There are currently no records to display.</p>
 <% end %>
-<form class="" action="/albums/new" method="get">
-  <button type="submit" name="button">Add a new album</button>
+<form class="" action="/words/new" method="get">
+  <button type="submit" name="button">Add a new word</button>
 </form>
 
-<h3>Sold Albums:</h3>
-<% if @albums_sold.any? %>
-  <ul>
-    <% @albums_sold.each do |album| %>
-      <li><%= album.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>There are currently no records to display.</p>
-<% end %>
-
-<form action="/albums/search" method="get">
+<form action="/words/search" method="get">
   <div class="form-group">
     <label for="search">Search</label>
     <input id="search" name="search" class="form-control" type="text">
