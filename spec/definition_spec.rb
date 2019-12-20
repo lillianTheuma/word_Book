@@ -64,7 +64,7 @@ describe '#Definition' do
       definition = Definition.new({:word => "Naima", :word_id => @word.id, :id => nil})
       definition.save()
       definition.update("Mr. P.C.", @word.id)
-      expect(definition.word).to(eq("Mr. P.C."))
+      expect(definition.word()).to(eq("Mr. P.C."))
     end
   end
 
