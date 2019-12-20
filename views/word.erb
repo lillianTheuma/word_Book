@@ -5,7 +5,7 @@
   <% if @word.definitions %>
     <ul>
       <% @word.definitions.each do |definition| %>
-        <li><a href="/words/<%= @word.id %>/definitions/<%= definition.id %>"><%= definition.word %></a></li>
+        <li><a href="/words/<%= @word.id %>/definitions/<%= definition.id %>"> <%= definition.word() %> </a></li>
       <% end %>
     </ul>
   <% else %>
@@ -24,14 +24,14 @@
 
 
 
-<h4>Add a word:</h4>
+<h4>Add a definition:</h4>
 
 <form action="/words/<%= @word.id %>/definitions" method="post">
   <div class="form-group">
     <label for="song_name">Definition</label>
     <input id="song_name" name="song_name" class="form-control" type="text">
   </div>
-  <button type="submit" class="btn">Add song</button>
+  <button type="submit" class="btn">Add Definition</button>
 </form>
 
 <p><a href="/words">Return to word list</a></p>
