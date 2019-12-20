@@ -1,0 +1,36 @@
+<h1>Word Book</h1>
+
+<h2>Words</h2>
+
+<h3>Words that have been added:</h3>
+<% if @words.any? %>
+  <ul>
+    <% @words.each do |word| %>
+      <li><a href="/words/<%= words.id %>"><%= word.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no records to display.</p>
+<% end %>
+<form class="" action="/words/new" method="get">
+  <button type="submit" name="button">Add a new word</button>
+</form>
+
+<h3>Sold words:</h3>
+<% if @words_sold.any? %>
+  <ul>
+    <% @words_sold.each do |word| %>
+      <li><%= word.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no records to display.</p>
+<% end %>
+
+<form action="/words/search" method="get">
+  <div class="form-group">
+    <label for="search">Search</label>
+    <input id="search" name="search" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn">Search</button>
+</form>
