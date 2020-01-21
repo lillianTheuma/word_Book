@@ -2,7 +2,7 @@
 
 This project is a word and definition project created as an example of routing using Ruby. It
 
-[View the project deployed live](https://mighty-anchorage-15389.herokuapp.com/)
+[View the project deployed live](https://cryptic-eyrie-06890.herokuapp.com/words)
 
 ## Install
 
