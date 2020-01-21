@@ -21,7 +21,7 @@ class Meaning
   end
 
   def save
-    @@meanings[self.id] = Meaning.new({:name => @name, :word_id => @word_id, :id => @id, :poster_name => @poster_name})
+    @@meanings[self.id] = Meaning.new({:poster_name => @poster_name, :name => @name, :word_id => @word_id, :id => @id, :poster_name => @poster_name})
   end
 
   def self.find(id)
@@ -31,7 +31,7 @@ class Meaning
   def update(name, word_id)
     self.name = name
     self.word_id = word_id
-    @@meanings[self.id] = Meaning.new({:name => @name, :word_id => @word_id, :id => @id, :poster_name => @poster_name})
+    @@meanings[self.id] = Meaning.new({:poster_name => @poster_name, :name => @name, :word_id => @word_id, :id => @id, :poster_name => @poster_name})
   end
 
   def delete

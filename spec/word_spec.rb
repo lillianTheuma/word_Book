@@ -79,9 +79,9 @@ describe '#Word' do
     it("returns an word's meanings") do
       word = Word.new({:name => "A Love Supreme", :id => nil})
       word.save()
-      meaning = Meaning.new({:name => "Naima", :word_id => word.id, :id => nil})
+      meaning = Meaning.new({:poster_name => "Naima", :name => "Naima", :word_id => word.id, :id => nil})
       meaning.save()
-      meaning2 = Meaning.new({:name => "Cousin Mary", :word_id => word.id, :id => nil})
+      meaning2 = Meaning.new({:poster_name => "Naima", :name => "Cousin Mary", :word_id => word.id, :id => nil})
       meaning2.save()
       expect(word.meanings).to(eq([meaning, meaning2]))
     end
@@ -110,19 +110,5 @@ describe '#Word' do
       expect(Word.sort()).to(eq([word2, word, word3]))
     end
   end
-  describe('#sold') do
-    it("sorts words by name") do
-      word = Word.new({:name => "Blue", :id => nil})
-      word.save()
-      word2 = Word.new({:name => "A Love Supreme", :id => nil})
-      word2.save()
-      word3 = Word.new({:name => "Moving Pictures", :id => nil})
-      word3.save()
-      word.sold()
-      expect(Word.all_sold).to(eq([word]))
-    end
-  end
-
-
 
 end
